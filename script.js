@@ -340,8 +340,7 @@
   function initTheme() {
     const toggle = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('theme');
-    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    const initialTheme = savedTheme || (prefersLight ? 'light' : 'dark');
+    const initialTheme = savedTheme === 'light' ? 'light' : 'dark';
 
     function applyTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);

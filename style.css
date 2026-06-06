@@ -33,6 +33,9 @@
   --three-opacity: 0.28;
   --orb-1: rgba(0, 229, 255, 0.06);
   --orb-2: rgba(139, 92, 246, 0.07);
+  --cursor-dot: #f4efe6;
+  --cursor-ring: rgba(244, 239, 230, 0.85);
+  --cursor-glow: rgba(244, 239, 230, 0.35);
   --radius: 16px;
   --radius-lg: 24px;
   --font-display: 'Syne', sans-serif;
@@ -72,6 +75,9 @@
   --three-opacity: 0.12;
   --orb-1: rgba(8, 145, 178, 0.08);
   --orb-2: rgba(124, 58, 237, 0.08);
+  --cursor-dot: #0f172a;
+  --cursor-ring: rgba(15, 23, 42, 0.65);
+  --cursor-glow: rgba(15, 23, 42, 0.25);
 }
 
 *, *::before, *::after {
@@ -162,23 +168,33 @@ img { max-width: 100%; display: block; }
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #f4efe6;
-  box-shadow: 0 0 12px rgba(244, 239, 230, 0.35);
+  background: var(--cursor-dot);
+  box-shadow: 0 0 12px var(--cursor-glow);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
 }
 
 .cursor-ring {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  border: 1px solid rgba(244, 239, 230, 0.85);
-  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+  border: 1.5px solid var(--cursor-ring);
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.3s ease, opacity 0.25s ease;
 }
 
 .custom-cursor.is-hovering .cursor-ring {
   width: 58px;
   height: 58px;
   border-color: var(--accent);
-  opacity: 0.9;
+  opacity: 1;
+}
+
+.custom-cursor.is-hovering .cursor-dot {
+  background: var(--accent);
+  box-shadow: 0 0 16px rgba(8, 145, 178, 0.35);
+}
+
+[data-theme="dark"] .custom-cursor.is-hovering .cursor-dot {
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
 }
 
 @media (hover: hover) and (pointer: fine) {
